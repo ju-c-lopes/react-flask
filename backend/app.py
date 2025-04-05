@@ -1,3 +1,9 @@
+"""
+This is the main application file for the Flask backend.
+
+It initializes the Flask app and defines the routes for the application.
+"""
+
 from flask import Flask
 
 
@@ -18,4 +24,4 @@ def hello_world():
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run()
