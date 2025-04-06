@@ -1,4 +1,5 @@
 import './App.css'
+import SearchSpeaker from './SearchSpeaker/SearchSpeaker.jsx';
 
 function SpeakerProfile(props) {
   return (
@@ -20,6 +21,7 @@ function App() {
         position="Software Engineer"
         company="Tech Corp"
       />
+      <SearchSpeaker />
     </>
   )
 }
