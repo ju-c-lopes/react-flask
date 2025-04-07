@@ -40,11 +40,37 @@ function Counter(props) {
   )
 }
 
+const Dashboard = () => {
+  const [isLoggedIn, SetIsLoggedIn] = useState(false);
+
+  const handleLogin = () => {
+    SetIsLoggedIn(true);
+  };
+
+  const handleLogout = () => {
+    SetIsLoggedIn(false);
+  };
+
+  return (
+    <div style={{ position: 'absolute', top: '10px', right: '10px', padding: '10px' }}>
+      {isLoggedIn ? (
+        <button onClick={handleLogout}>Logout</button>
+      ) : (
+        <button onClick={handleLogin}>Login</button>
+      )}
+
+      {isLoggedIn && <p>Hey friend, Welcome!</p>}
+      {!isLoggedIn && <p>Please log in to continue.</p>}
+    </div>
+  );
+};
+
 function App() {
 
   return (
     <>
       <h1>Speaker Profile</h1>
+      <Dashboard />
       <SpeakerProfile
         name="John Doe"
         position="Software Engineer"
