@@ -5,7 +5,7 @@ const SearchSpeaker = () => {
 
     return (
         <div>
-            <label htmlFor="search">Search Speaker:</label>
+            <label htmlFor="search">Search Speaker: </label>
             <input id='search' type="text" onChange={(e) => setSearchText(e.target.value)} />
             <p>Searching for <strong>{searchText}</strong></p>
         </div>

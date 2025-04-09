@@ -1,6 +1,8 @@
-import './App.css'
-import React, { useState } from 'react';
-import SearchSpeaker from './SearchSpeaker/SearchSpeaker.jsx';
+import './App.css';
+import { useEffect, useState } from 'react';
+import Counter from './components/Counter/Counter.jsx';
+import Dashboard from './components/Dashboard/Dashboard.jsx';
+import SearchSpeaker from './components/SearchSpeaker/SearchSpeaker.jsx';
 
 function SpeakerProfile(props) {
   return (
@@ -12,58 +14,35 @@ function SpeakerProfile(props) {
   )
 }
 
-function Counter(props) {
-  const [count, setCount] = useState(0);
-
-  const GrowMeUp = () => {
-    setCount(count + 1);
-  }
-
-  const ShrinkMeDown = () => {
-    setCount(count - 1);
-  }
-
-  const ResetMe = () => {
-    setCount(0);
-  }
+const DeliverData = () => {
+  const [data, setData] = useState([]);
+  
+  useEffect(() => {
+    const API_URL = 'https://dummyjson.com/users';
+  
+    const fetchSpeakers = async () => {
+      try {
+        const response = await fetch(API_URL)
+        const data = await response.json();
+        setData(data.users);
+      } catch (error) {
+        console.log("error", error);
+      }
+    }
+    
+    fetchSpeakers();
+  }, [data]);
 
   return (
-    <div>
-      <p>{props.name} has been clicked {count} times</p>
-
-      <div style={{ display: 'flex', gap: '10px' }}>
-        <button onClick={GrowMeUp}>Grow me up</button>
-        <button onClick={ShrinkMeDown}>Shrink me down</button>
-        <button onClick={ResetMe}>Reset me</button>
-      </div>
-    </div>
+    <ul>
+      {data.map(item  => (
+        <li key={item.id}>
+          {item.firstName} {item.lastName}
+        </li>
+      ))}
+    </ul>
   )
 }
-
-const Dashboard = () => {
-  const [isLoggedIn, SetIsLoggedIn] = useState(false);
-
-  const handleLogin = () => {
-    SetIsLoggedIn(true);
-  };
-
-  const handleLogout = () => {
-    SetIsLoggedIn(false);
-  };
-
-  return (
-    <div style={{ position: 'absolute', top: '10px', right: '10px', padding: '10px' }}>
-      {isLoggedIn ? (
-        <button onClick={handleLogout}>Logout</button>
-      ) : (
-        <button onClick={handleLogin}>Login</button>
-      )}
-
-      {isLoggedIn && <p>Hey friend, Welcome!</p>}
-      {!isLoggedIn && <p>Please log in to continue.</p>}
-    </div>
-  );
-};
 
 function App() {
 
@@ -77,6 +56,7 @@ function App() {
         company="Tech Corp"
       />
       <SearchSpeaker />
+      <DeliverData />
       <h2>Counter:</h2>
       <Counter name="Counter" />
     </>
