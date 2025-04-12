@@ -1,8 +1,11 @@
 import './App.css';
-import { useEffect, useState } from 'react';
+import ContextExample from './components/ContextExample/ContextExample.jsx';
 import Counter from './components/Counter/Counter.jsx';
 import Dashboard from './components/Dashboard/Dashboard.jsx';
+import DeliverData from './components/DeliverData/DeliverData.jsx';
 import SearchSpeaker from './components/SearchSpeaker/SearchSpeaker.jsx';
+
+import PropTypes from 'prop-types';
 
 function SpeakerProfile(props) {
   return (
@@ -14,35 +17,11 @@ function SpeakerProfile(props) {
   )
 }
 
-const DeliverData = () => {
-  const [data, setData] = useState([]);
-  
-  useEffect(() => {
-    const API_URL = 'https://dummyjson.com/users';
-  
-    const fetchSpeakers = async () => {
-      try {
-        const response = await fetch(API_URL)
-        const data = await response.json();
-        setData(data.users);
-      } catch (error) {
-        console.log("error", error);
-      }
-    }
-    
-    fetchSpeakers();
-  }, [data]);
-
-  return (
-    <ul>
-      {data.map(item  => (
-        <li key={item.id}>
-          {item.firstName} {item.lastName}
-        </li>
-      ))}
-    </ul>
-  )
-}
+SpeakerProfile.propTypes = {
+  name: PropTypes.string.isRequired,
+  position: PropTypes.string.isRequired,
+  company: PropTypes.string.isRequired,
+};
 
 function App() {
 
@@ -59,6 +38,8 @@ function App() {
       <DeliverData />
       <h2>Counter:</h2>
       <Counter name="Counter" />
+      <h2>Context Example:</h2>
+      <ContextExample />
     </>
   )
 }
