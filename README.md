@@ -35,6 +35,27 @@ Copy the IP address (e.g., 192.168.x.xxx).
 
 Replace `<your-ip>` with your local machine's IP address.
 
+### Running JSON Server (Mock API)
+1. Install `json-server` if you haven't already:
+   ```bash
+   npm install json-server
+2. Create a `db.json` file in your project directory with your mock data. For example:
+   ```json
+   {
+     "posts": [
+       { "id": 1, "title": "Hello World", "author": "John Doe" }
+     ]
+   }
+   ```
+
+3. Start the JSON Server:
+   ```bash
+   npx json-server --watch db.json --port 3000
+4. Access the mock API at:
+   `http://localhost:3000`
+
+5. To access the mock API from another PC, follow the same steps as accessing the React project, replacing the port with `3000`.
+
 ---
 
 ## Flask Backend (Future Purposes)
