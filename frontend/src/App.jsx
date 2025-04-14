@@ -2,6 +2,7 @@ import './App.css';
 import ContextExample from './components/ContextExample/ContextExample.jsx';
 import Counter from './components/Counter/Counter.jsx';
 import Dashboard from './components/Dashboard/Dashboard.jsx';
+import DBUseReducer from './components/DBUseReducer/DBUseReducer.jsx';   
 import DeliverData from './components/DeliverData/DeliverData.jsx';
 import SearchSpeaker from './components/SearchSpeaker/SearchSpeaker.jsx';
 
@@ -40,6 +41,8 @@ function App() {
       <Counter name="Counter" />
       <h2>Context Example:</h2>
       <ContextExample />
+      <h2>Event Schedule:</h2>
+      <DBUseReducer />
     </>
   )
 }
